@@ -5,7 +5,7 @@ namespace Ui
     public class ColorPanel : MonoBehaviour
     {
         [SerializeField] private Color m_Color;
-        private Color Color
+        public Color Color
         {
             get => m_Color;
             set

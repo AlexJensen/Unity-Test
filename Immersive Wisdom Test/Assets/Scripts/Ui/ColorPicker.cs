@@ -46,7 +46,7 @@ public class ColorPicker : MonoBehaviour
         foreach (ColorSlider colorSlider in colorSliders)
         {
             colorSlider.cpGrad.UpdateColors(
-                new Color(colorSlider.rgb == RGB.RED? 0 : colorSliders[0].slider.value, colorSlider.rgb == RGB.GREEN ? 0 : colorSliders[1].slider.value, colorSlider.rgb == RGB.BLUE ? 0 : colorSliders[2].slider.value, 1),
+                new Color(colorSlider.rgb == RGB.RED ? 0 : colorSliders[0].slider.value, colorSlider.rgb == RGB.GREEN ? 0 : colorSliders[1].slider.value, colorSlider.rgb == RGB.BLUE ? 0 : colorSliders[2].slider.value, 1),
                 new Color(colorSlider.rgb == RGB.RED ? 1 : colorSliders[0].slider.value, colorSlider.rgb == RGB.GREEN ? 1 : colorSliders[1].slider.value, colorSlider.rgb == RGB.BLUE ? 1 : colorSliders[2].slider.value, 1));
             colorSlider.text.text = "" + Mathf.Floor(colorSlider.slider.value * 255);
         }
@@ -69,6 +69,25 @@ public class ColorPicker : MonoBehaviour
         colorSliders[0].slider.value = color.r;
         colorSliders[1].slider.value = color.g;
         colorSliders[2].slider.value = color.b;
+        UpdateSliders();
+    }
+
+    public void UpdateInputColor()
+    {
+        foreach (ColorSlider colorSlider in colorSliders)
+        {
+            colorSlider.slider.value = int.Parse(colorSlider.text.text) / 255f;
+        }
+        UpdateSliders();
+    }
+
+    public void UpdateOpacity()
+    {
+        int result;
+        if (int.TryParse(opacity.text.text, out result))
+        {
+            opacity.slider.value = result / 100f;
+        }
         UpdateSliders();
     }
 }

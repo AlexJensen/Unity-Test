@@ -8,7 +8,7 @@ public class ColorPickerGradient : MonoBehaviour
     Image image;
     Material material;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         image = GetComponent<Image>();
         Material mat = Instantiate(image.material);

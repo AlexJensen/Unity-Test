@@ -56,7 +56,8 @@ namespace Ui
             Rect parentRect = parent.rect;
             for (int i = 0; i < 2; i++)
             {
-                position[i] = Mathf.Clamp(position[i], parent.position[i] + parentRect.min[i], parent.position[i] + parentRect.max[i]);
+                position[i] = Mathf.Clamp(position[i], parent.position[i] + parentRect.min[i], 
+                                                       parent.position[i] + parentRect.max[i]);
             }
             return position;
         }

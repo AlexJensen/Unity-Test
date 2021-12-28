@@ -8,7 +8,8 @@ namespace Ui
     public class DragHandle : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         [SerializeField] private RectTransform m_RectTransform;
-        protected RectTransform RectTransform => m_RectTransform ? m_RectTransform : m_RectTransform = GetComponent<RectTransform>();
+        protected RectTransform RectTransform => m_RectTransform ? m_RectTransform : 
+            m_RectTransform = GetComponent<RectTransform>();
         
         protected Vector2 StartMousePosition { get; set; }
         protected Vector2 StartTransformPosition { get; set; }
@@ -35,6 +36,7 @@ namespace Ui
             //DraggingPointerId = eventData.pointerId;
             StartMousePosition = eventData.pressPosition;
             StartTransformPosition = RectTransform.anchoredPosition;
+            RectTransform.SetAsLastSibling();
         }
 
         public virtual void OnDrag(PointerEventData eventData)

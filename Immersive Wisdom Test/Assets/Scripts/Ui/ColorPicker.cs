@@ -28,7 +28,7 @@ public class ColorPicker : MonoBehaviour
     public struct OpacitySlider
     {
         public Slider slider;
-        public TMP_InputField text;
+        public TMP_InputField input;
     }
 
     public List<ColorSlider> colorSliders;
@@ -50,7 +50,7 @@ public class ColorPicker : MonoBehaviour
                 new Color(colorSlider.rgb == RGB.RED ? 1 : colorSliders[0].slider.value, colorSlider.rgb == RGB.GREEN ? 1 : colorSliders[1].slider.value, colorSlider.rgb == RGB.BLUE ? 1 : colorSliders[2].slider.value, 1));
             colorSlider.input.text = "" + Mathf.Floor(colorSlider.slider.value * 255);
         }
-        opacity.text.text = Mathf.Floor(opacity.slider.value * 100) + "%";
+        opacity.input.text = Mathf.Floor(opacity.slider.value * 100) + "%";
 
         Color color = new Color(colorSliders[0].slider.value, colorSliders[1].slider.value, colorSliders[2].slider.value, opacity.slider.value);
         hex.text = ColorUtility.ToHtmlStringRGB(color);
@@ -84,7 +84,7 @@ public class ColorPicker : MonoBehaviour
     public void UpdateOpacity()
     {
         int result;
-        if (int.TryParse(opacity.text.text, out result))
+        if (int.TryParse(opacity.input.text, out result))
         {
             opacity.slider.value = result / 100f;
         }

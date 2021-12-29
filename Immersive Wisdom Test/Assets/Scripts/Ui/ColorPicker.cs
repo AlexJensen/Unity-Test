@@ -21,7 +21,7 @@ public class ColorPicker : MonoBehaviour
         public RGB rgb;
         public ColorPickerGradient cpGrad;
         public Slider slider;
-        public TMP_InputField text;
+        public TMP_InputField input;
     }
 
     [Serializable]
@@ -48,7 +48,7 @@ public class ColorPicker : MonoBehaviour
             colorSlider.cpGrad.UpdateColors(
                 new Color(colorSlider.rgb == RGB.RED ? 0 : colorSliders[0].slider.value, colorSlider.rgb == RGB.GREEN ? 0 : colorSliders[1].slider.value, colorSlider.rgb == RGB.BLUE ? 0 : colorSliders[2].slider.value, 1),
                 new Color(colorSlider.rgb == RGB.RED ? 1 : colorSliders[0].slider.value, colorSlider.rgb == RGB.GREEN ? 1 : colorSliders[1].slider.value, colorSlider.rgb == RGB.BLUE ? 1 : colorSliders[2].slider.value, 1));
-            colorSlider.text.text = "" + Mathf.Floor(colorSlider.slider.value * 255);
+            colorSlider.input.text = "" + Mathf.Floor(colorSlider.slider.value * 255);
         }
         opacity.text.text = Mathf.Floor(opacity.slider.value * 100) + "%";
 
@@ -76,7 +76,7 @@ public class ColorPicker : MonoBehaviour
     {
         foreach (ColorSlider colorSlider in colorSliders)
         {
-            colorSlider.slider.value = int.Parse(colorSlider.text.text) / 255f;
+            colorSlider.slider.value = int.Parse(colorSlider.input.text) / 255f;
         }
         UpdateSliders();
     }

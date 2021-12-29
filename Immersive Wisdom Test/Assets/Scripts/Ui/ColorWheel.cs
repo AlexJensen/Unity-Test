@@ -12,7 +12,7 @@ public class ColorWheel : MonoBehaviour
     public struct OpacitySlider
     {
         public Slider slider;
-        public TMP_InputField text;
+        public TMP_InputField input;
     }
 
     [SerializeField]
@@ -22,14 +22,14 @@ public class ColorWheel : MonoBehaviour
     [SerializeField]
     OpacitySlider opacity;
     [SerializeField]
-    ColorPanel colorPicker;
+    ColorPanel colorPanel;
 
     Color currentColor = Color.white;
 
     public void UpdateSliders()
     {
         wheelSelector.UpdateWheelColor(new Color(brightnessSlider.value, brightnessSlider.value, brightnessSlider.value, opacity.slider.value));
-        opacity.text.text = Mathf.Floor(opacity.slider.value * 100) + "%";
+        opacity.input.text = Mathf.Floor(opacity.slider.value * 100) + "%";
         UpdateBackgroundColor(currentColor);
     }
 
@@ -38,13 +38,13 @@ public class ColorWheel : MonoBehaviour
         currentColor = color;
         color *= brightnessSlider.value;
         color[3] = opacity.slider.value;
-        colorPicker.Color = color;
+        colorPanel.Color = color;
     }
 
     public void UpdateOpacity()
     {
         int result;
-        if (int.TryParse(opacity.text.text, out result))
+        if (int.TryParse(opacity.input.text, out result))
         {
             opacity.slider.value = result / 100f;
         }
